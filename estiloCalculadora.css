@@ -1,28 +1,95 @@
-body{
-    background-color: rgb(174, 0, 255);
+* {
+    font-family: 'Fraunces', serif;
+    color: #fff;
 }
-div.contenedor{
-    background-color: brown;
-    
+
+body {
+    margin: 0;
+   
 }
-div.teclado{
+
+.container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-div.base{
-    display: flex;
-    flex-direction: row
-}
-div.numeros{
+
+.calculadora {
     display: grid;
-    grid-template-columns: repeat(3,75px);
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: 160px repeat(5, 75px);
+    background-color: #441feb;
+    padding: 15px;
+    border-radius: 32px;
+    box-shadow: 130px 100px 30px 55px #00000033;
 }
-div.simbolos{
+
+button {
+    cursor: pointer;
+    margin: 5px;
+    padding: 0;
+    border-radius: 32px;
+    font-size: 1.5em;
+    border: none;
+    background-color:  #a413dd;
+   
+}
+button.operador{
+    background-color: black;
+}
+button.borrado{
+    background-color: black;
+}
+#punto{
+    background-color: black;
+}
+#punto:active{
+    background-color:  #320942;
+}
+#punto:focus{
+    outline: none;
+}
+button:active {
+    background-color:  #320942;
+}
+
+button:focus {
+    outline: none;
+}
+#reseteo{
+    background-color: rgb(146, 51, 13);
+
+}
+#reseteo:active{
+    background-color:  #320942;}
+#reseteo:focus{
+    outline: none;
+}
+.col-2 {
+    grid-column: span 2;
+    background-color: ;
+}
+
+.display {
+    grid-column: 1 / -1;
+    padding: 16px;
     display: flex;
+    margin: 10px 10px 20px;
     flex-direction: column;
+    align-items: flex-end;
+    background-color: #363636;
+    border-radius: 32px;
+    text-align: right;
+    justify-content: space-between;
+    word-break: break-all;
+    box-shadow: 5px 5px 5px 10px #00000033;
 }
-button{
-    width: 75px;
-    height: 75px;
-    margin: 5px ;
+
+#valor-actual {
+    font-size: 1.5em;
+}
+
+#valor-anterior {
+    font-size: 2em;
 }
