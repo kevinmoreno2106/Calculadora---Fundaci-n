@@ -17,4 +17,12 @@ div.numeros{
     display: grid;
     grid-template-columns: repeat(3,75px);
 }
-div.
+div.simbolos{
+    display: flex;
+    flex-direction: column;
+}
+button{
+    width: 75px;
+    height: 75px;
+    margin: 5px ;
+}
