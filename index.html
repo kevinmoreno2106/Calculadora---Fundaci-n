@@ -10,31 +10,41 @@
     <div class="container">
         <div class="calculadora">
             <div class="display">
-                <div id="valor-anterior"></div>
+                <div id="primerValor"></div>
+                <div id="operardor"></div>
+                <div id="segundoValor"> </div>
                 <div id="valor-actual"></div>
             </div>
-            <button id="reseteo" class="col-2" type="reset">C</button>
-            <button class="borrado" onclick="display.borrar()">&larr;</button>
-            <button class="operador" value="dividir">%</button>
-            <button class="numero">7</button>
-            <button class="numero">8</button>
-            <button class="numero">9</button>
-            <button class="operador" value="multiplicar">X</button>
-            <button class="numero">4</button>
-            <button class="numero">5</button>
-            <button class="numero">6</button>
-            <button class="operador" value="restar">-</button>
-            <button class="numero">1</button>
-            <button class="numero">2</button>
-            <button class="numero">3</button>
-            <button class="operador" value="sumar">+</button>
-            <button class="col-2 numero">0</button>
-            <button class="numero" id="punto">.</button>
-            <button class="operador" value="igual">=</button>
+            <button  id="reseteo" class="col-2" type="reset">C</button>
+            <button onclick="borrar" class="borrado" >←</button>
+            <button onclick="imagenOperador" class="operador" value="dividir">%</button>
+            <button onclick="7" class="numero">7</button>
+            <button onclick="8" class="numero">8</button>
+            <button onclick="9" class="numero">9</button>
+            <button onclick="mul" class="operador" value="multiplicar">X</button>
+            <button onclick="4" class="numero">4</button>
+            <button onclick="5" class="numero">5</button>
+            <button onclick="6" class="numero">6</button>
+            <button onclick="resta" class="operador" value="restar">-</button>
+            <button onclick="1" class="numero">1</button>
+            <button onclick="2" class="numero">2</button>
+            <button onclick="3" class="numero">3</button>
+            <button onclick="suma" class="operador" value="sumar">+</button>
+            <button onclick="0" class="col-2 numero">0</button>
+            <button onclick="punto" class="numero" id="punto">.</button>
+            <button onclick="igual" class="operador" value="igual">=</button>
         </div>
     </div>
     <script>
+        let primerValor= document.getElementById(primerValor)
+        let imagenOperador = document.getElementById(imagenOperador)
+        let segundoValor = document.getElementById(segundoValor)
+        let numero = document.getElementsByClassName(numero)
+        let operador = document.getElementsByClassName(operador)
+        let borrar =document.getElementsByClassName(reset)
 
+        let mostrar1 =0
+ 
     </script>
 </body>
 </html>
