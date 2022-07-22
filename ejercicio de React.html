@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React - ejercicios</title>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"> </script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <style>
+        div.bola {
+            background-color: red;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin: 5px;
+            border-radius: 100%;
+        }
+
+        div.bola.azul {
+            background-color: blue;
+        }
+
+        .vermell {
+            color:red;
+        }
+        .verd {
+            color:green;
+        }
+    div.borde{
+            border: 5px solid red
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+
+        function Main() {
+            return (
+                <div>
+                    <Titulo lletra = "30px" clase="verd" mensaje="hola react que tal" />
+                    <Titulo lletra="10px" clase="vermell" mensaje="aixo es vermell" />
+                    <BolaX ancho="70px" color="red"  margen="8px" radio="50%"/>
+                    <CuadradoB1 ancho="80px" grosor="5px" color="#ff0000"  margen="10px" clase="borde"/>
+                    <Mosca clase="fa-solid fa-mosquito" color="blue" position="absolute" />
+                    <Bola />
+                    <Bola />
+                    <Bola />
+                </div>
+            );
+        }
+
+        const Titulo = (props) => {
+            return <h1 style={{fontSize: props.lletra}} className={props.clase}>{props.mensaje}</h1>;
+        }
+        const BolaX = (props) => {
+            return <div style={{height: props.ancho, width:props.ancho, backgroundColor:props.color,
+            borderRadius:props.radio, margin:props.margen}}></div>
+        }
+        const CuadradoB1 = (props) => {
+            return <div style={{height: props.ancho, width: props.ancho, margin: props.margen } } className={props.clase}></div>
+        }
+        // , border: "1px solid blue" -> intentar pasarlo a props
+        const Mosca = (props)=> {
+            return <i style={{color: props.color}} className={props.clase}></i>
+        }
+
+        const Bola = () => <div className="bola" ></div>;
+        const BolaAzul = () => <div className="bola azul" ></div>;
+
+        ReactDOM.render(<Main />, document.getElementById("root"));
+    </script>
+    <script src="https://kit.fontawesome.com/ff193e5523.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
