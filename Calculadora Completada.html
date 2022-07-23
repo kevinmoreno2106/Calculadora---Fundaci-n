@@ -13,101 +13,129 @@
                 <p id="pantalla"></p>
                 
             </div>
-            <button  onClick="pulsar('C')"   id="reseteo" class="col-2" type="reset" >C</button>
-            <button onClick="pulsar('←')" class="borrado" >←</button>
-            <button onClick="pulsar('/')" class="operador" value="dividir" >/</button>
-            <button onClick="pulsar('7')"class="numero">7</button>
-            <button onClick="pulsar('8')"class="numero">8</button>
-            <button onClick="pulsar('9')" class="numero">9</button>
-            <button onClick="pulsar('*')" class="operador" value="multiplicar">X</button>
-            <button onClick="pulsar('4')" class="numero">4</button>
-            <button onClick="pulsar('5')" class="numero">5</button>
-            <button onClick="pulsar('6')" class="numero">6</button>
-            <button onClick="pulsar('-')" class="operador" value="restar">-</button>
-            <button onClick="pulsar('1')" class="numero">1</button>
-            <button onClick="pulsar('2')" class="numero">2</button>
-            <button onClick="pulsar('3')" class="numero">3</button>
-            <button onClick="pulsar('+')" class="operador" value="sumar">+</button>
-            <button onClick="pulsar('0')" class="col-2 numero">0</button>
-            <button onClick="pulsar('.')" class="numero" id="punto">.</button>
-            <button onClick="pulsar('=')" class="operador" value="igual">=</button>
+            <button onClick="clearCalculator()" id="reseteo" class="col-2" type="reset" >C</button>
+            <button onClick="removeLastCharacter()" class="borrado" >←</button>
+            <button onClick="operate('/')" class="operador" value="dividir" >/</button>
+            <button onClick="pushButton('7')"class="numero">7</button>
+            <button onClick="pushButton('8')"class="numero">8</button>
+            <button onClick="pushButton('9')" class="numero">9</button>
+            <button onClick="operate('*')" class="operador" value="multiplicar">X</button>
+            <button onClick="pushButton('4')" class="numero">4</button>
+            <button onClick="pushButton('5')" class="numero">5</button>
+            <button onClick="pushButton('6')" class="numero">6</button>
+            <button onClick="operate('-')" class="operador" value="restar">-</button>
+            <button onClick="pushButton('1')" class="numero">1</button>
+            <button onClick="pushButton('2')" class="numero">2</button>
+            <button onClick="pushButton('3')" class="numero">3</button>
+            <button onClick="operate('+')" class="operador" value="sumar">+</button>
+            <button onClick="pushButton('0')" class="col-2 numero">0</button>
+            <button onClick="pushButton('.')" class="numero" id="punto">.</button>
+            <button onClick="runOperation()" class="operador" value="igual">=</button>
         </div>
     </div>
     <script>
-        let pantalla = "";
-       let operacio="";
-       let valor1 = 0;
-       let neteja = false;
- 
-       let _pantalla = document.getElementById("pantalla");
-       let _valor1 = document.getElementById("valor1");
-       let _operacio = document.getElementById("operacio");
- 
- 
-       function pulsar(tecla) {
- 
-           if (neteja){
-               pantalla='';
-               neteja = false;
-           }
- 
-           switch (tecla) {
-               case 'C':
-                   pantalla = '';
-                   operacio='';
-                   valor1=0;
-                   break;
-               case '+':
-                   operacio = '+';
-                   neteja=true;
-                   valor1=pantalla*1;
-                  
-                   break;
-               case '-':
-                   operacio = '-';
-                   neteja=true;
-                   valor1=pantalla*1;
-                  
-                   break;
-               case '*':
-                   operacio = '*';
-                   neteja=true;
-                   valor1=pantalla*1;
-                  
-                   break;
-               case '/':
-                   operacio = '/';
-                   neteja=true;
-                   valor1=pantalla*1;
-                  
-                   break;
-               case '=':
-                   igual();
-                  
-                   break;
-               default:
-                   pantalla = pantalla + tecla;
-                   break;
-           }
-           actualizaDisplay();
-       }
- 
-       function actualizaDisplay(){
-           _pantalla.innerText=pantalla;
-           _operacio.innerText=operacio;
-           _valor1.innerText=valor1;
-          
-       }
-       function igual(){
-           let valor2 = pantalla*1;
-           let res = eval(''+valor1+operacio+valor2);
-           pantalla = res;
-           valor1 = res;
-           actualizaDisplay();
-       }
- 
-       actualizaDisplay();
+        let pantalla = '';
+        let operacio = '';
+        let valor1 = null;
+        let valor2 = null;
+        resolved = false;
 
+
+       function pushButton(tecla){
+        if (resolved) {
+            pantalla = ''
+            setPantalla(pantalla)
+            resolved = false;
+        }
+        pantalla = pantalla + tecla;
+        setPantalla(pantalla);
+       }
+
+       function removeLastCharacter(){
+        let actualValue = pantalla+'';
+        console.log(actualValue);
+        let newValue = actualValue.substring(0, actualValue.length-1);
+        // console.log(newValue, _pantalla);
+        pantalla = newValue;
+        setPantalla(pantalla);
+       }
+
+       function operate(operator){
+            
+            
+           if (!valor1 ) {
+            
+            valor1 = pantalla*1;
+            pantalla = ''
+            setPantalla(pantalla)
+            
+           }else{
+               runOperation()
+           }
+           operacio = operator;
+           console.log(valor1, operacio, valor2);
+       }
+
+       function runOperation(){
+
+            valor2 = pantalla*1;
+            let result;
+            if (operacio) {
+                switch (operacio) {
+                case '+':
+                    result = sum(valor1, valor2);
+                    break;
+                case '-':
+                    result = subs(valor1, valor2);
+                    break;
+                case '*':
+                    result = multiply(valor1, valor2)
+                    break;
+                case '/':
+                    result = split(valor1, valor2);
+                    break;
+                }
+                valor1 = result;
+                valor2 = null;
+                pantalla = valor1;
+                operacio = '';
+                setPantalla(valor1);
+                resolved = true;
+            }
+            
+       }
+
+       function sum(value1, value2){
+            return value1 + value2;
+       }
+       function subs(value1, value2){
+            return value1-value2;
+       }
+       function multiply(value1, value2){
+            return value1*value2;
+       }
+       function split(value1, value2){
+            return value1/value2;
+       }
+
+       function setPantalla(value){
+
+        let _pantalla = document.getElementById("pantalla");
+        _pantalla.value = value;
+        _pantalla.innerText=value;
+
+       }
+
+
+       function clearCalculator() {
+        pantalla = '';
+        operacio = '';
+        valor1 = null;
+        valor2 = null;
+        resolved = false;
+        setPantalla(pantalla)
+       }
+    
     </script>
 </body>
 </html>
